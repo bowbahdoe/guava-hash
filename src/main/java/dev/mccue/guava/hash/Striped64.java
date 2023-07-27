@@ -151,12 +151,12 @@ abstract class Striped64 extends Number {
 
   /** CASes the base field. */
   final boolean casBase(long cmp, long val) {
-    return busyOffset.compareAndSet(this, cmp, val);
+    return baseOffset.compareAndSet(this, cmp, val);
   }
 
   /** CASes the busy field from 0 to 1 to acquire lock. */
   final boolean casBusy() {
-    return busyOffset.compareAndSet(this, 0, 1);
+    return busyOffset.compareAndSet(this, 0L, 1L);
   }
 
   /**
