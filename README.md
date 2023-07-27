@@ -35,7 +35,7 @@ in-depth usage guides.
 ```xml
 <dependency>
     <groupId>dev.mccue</groupId>
-    <artifactId>guava-html</artifactId>
+    <artifactId>guava-hash</artifactId>
     <version>0.0.1</version>
 </dependency>
 ```
