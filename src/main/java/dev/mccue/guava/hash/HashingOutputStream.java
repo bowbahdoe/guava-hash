@@ -16,27 +16,25 @@ package dev.mccue.guava.hash;
 
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
 
-
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * An {@link OutputStream} that maintains a hash of the data written to it.
+ * An {@code OutputStream} that maintains a hash of the data written to it.
  *
  * @author Nick Piepmeier
  * @since 16.0
  */
-@Beta
 @ElementTypesAreNonnullByDefault
 public final class HashingOutputStream extends FilterOutputStream {
   private final Hasher hasher;
 
   /**
-   * Creates an output stream that hashes using the given {@link HashFunction}, and forwards all
-   * data written to it to the underlying {@link OutputStream}.
+   * Creates an output stream that hashes using the given {@code HashFunction}, and forwards all
+   * data written to it to the underlying {@code OutputStream}.
    *
-   * <p>The {@link OutputStream} should not be written to before or after the hand-off.
+   * <p>The {@code OutputStream} should not be written to before or after the hand-off.
    */
   // TODO(user): Evaluate whether it makes sense to always piggyback the computation of a
   // HashCode on an existing OutputStream, compared to creating a separate OutputStream that could
@@ -60,7 +58,7 @@ public final class HashingOutputStream extends FilterOutputStream {
   }
 
   /**
-   * Returns the {@link HashCode} based on the data written to this stream. The result is
+   * Returns the {@code HashCode} based on the data written to this stream. The result is
    * unspecified if this method is called more than once on the same instance.
    */
   public HashCode hash() {

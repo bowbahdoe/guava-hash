@@ -16,28 +16,26 @@ package dev.mccue.guava.hash;
 
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
 
-
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * An {@link InputStream} that maintains a hash of the data read from it.
+ * An {@code InputStream} that maintains a hash of the data read from it.
  *
  * @author Qian Huang
  * @since 16.0
  */
-@Beta
 @ElementTypesAreNonnullByDefault
 public final class HashingInputStream extends FilterInputStream {
   private final Hasher hasher;
 
   /**
-   * Creates an input stream that hashes using the given {@link HashFunction} and delegates all data
-   * read from it to the underlying {@link InputStream}.
+   * Creates an input stream that hashes using the given {@code HashFunction} and delegates all data
+   * read from it to the underlying {@code InputStream}.
    *
-   * <p>The {@link InputStream} should not be read from before or after the hand-off.
+   * <p>The {@code InputStream} should not be read from before or after the hand-off.
    */
   public HashingInputStream(HashFunction hashFunction, InputStream in) {
     super(checkNotNull(in));
@@ -97,7 +95,7 @@ public final class HashingInputStream extends FilterInputStream {
   }
 
   /**
-   * Returns the {@link HashCode} based on the data read from this stream. The result is unspecified
+   * Returns the {@code HashCode} based on the data read from this stream. The result is unspecified
    * if this method is called more than once on the same instance.
    */
   public HashCode hash() {

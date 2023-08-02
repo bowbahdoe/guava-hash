@@ -24,22 +24,22 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * A hash function is a collision-averse pure function that maps an arbitrary block of data to a
  * number called a <i>hash code</i>.
  *
- * <h2>Definition</h2>
+ * <h3>Definition</h3>
  *
  * <p>Unpacking this definition:
  *
  * <ul>
  *   <li><b>block of data:</b> the input for a hash function is always, in concept, an ordered byte
  *       array. This hashing API accepts an arbitrary sequence of byte and multibyte values (via
- *       {@link Hasher}), but this is merely a convenience; these are always translated into raw
+ *       {@code Hasher}), but this is merely a convenience; these are always translated into raw
  *       byte sequences under the covers.
  *   <li><b>hash code:</b> each hash function always yields hash codes of the same fixed bit length
- *       (given by {@link #bits}). For example, {@link Hashing#sha1} produces a 160-bit number,
- *       while {@link Hashing#murmur3_32()} yields only 32 bits. Because a {@code long} value is
+ *       (given by {@code #bits}). For example, {@code Hashing#sha1} produces a 160-bit number,
+ *       while {@code Hashing#murmur3_32()} yields only 32 bits. Because a {@code long} value is
  *       clearly insufficient to hold all hash code values, this API represents a hash code as an
- *       instance of {@link HashCode}.
+ *       instance of {@code HashCode}.
  *   <li><b>pure function:</b> the value produced must depend only on the input bytes, in the order
- *       they appear. Input data is never modified. {@link HashFunction} instances should always be
+ *       they appear. Input data is never modified. {@code HashFunction} instances should always be
  *       stateless, and therefore thread-safe.
  *   <li><b>collision-averse:</b> while it can't be helped that a hash function will sometimes
  *       produce the same hash code for distinct inputs (a "collision"), every hash function strives
@@ -67,7 +67,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *       in the hash code should be as evenly "spread out" through the hash code's bits as possible.
  *       The result is that, for example, when choosing a bucket in a hash table of size 2^8,
  *       <i>any</i> eight bits could be consistently used.
- *   <li><b>cryptographic:</b> certain hash functions such as {@link Hashing#sha512} are designed to
+ *   <li><b>cryptographic:</b> certain hash functions such as {@code Hashing#sha512} are designed to
  *       make it as infeasible as possible to reverse-engineer the input that produced a given hash
  *       code, or even to discover <i>any</i> two distinct inputs that yield the same result. These
  *       are called <i>cryptographic hash functions</i>. But, whenever it is learned that either of
@@ -79,25 +79,25 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  * <h3>Providing input to a hash function</h3>
  *
- * <p>The primary way to provide the data that your hash function should act on is via a {@link
- * Hasher}. Obtain a new hasher from the hash function using {@link #newHasher}, "push" the relevant
- * data into it using methods like {@link Hasher#putBytes(byte[])}, and finally ask for the {@code
- * HashCode} when finished using {@link Hasher#hash}. (See an {@linkplain #newHasher example} of
+ * <p>The primary way to provide the data that your hash function should act on is via a {@code
+ * Hasher}. Obtain a new hasher from the hash function using {@code #newHasher}, "push" the relevant
+ * data into it using methods like {@code Hasher#putBytes(byte[])}, and finally ask for the {@code
+ * HashCode} when finished using {@code Hasher#hash}. (See an {@code #newHasher example} of
  * this.)
  *
  * <p>If all you want to hash is a single byte array, string or {@code long} value, there are
- * convenient shortcut methods defined directly on {@link HashFunction} to make this easier.
+ * convenient shortcut methods defined directly on {@code HashFunction} to make this easier.
  *
  * <p>Hasher accepts primitive data types, but can also accept any Object of type {@code T} provided
- * that you implement a {@link Funnel}{@code <T>} to specify how to "feed" data from that object
- * into the function. (See {@linkplain Hasher#putObject an example} of this.)
+ * that you implement a {@code Funnel}{@code <T>} to specify how to "feed" data from that object
+ * into the function. (See {@code Hasher#putObject an example} of this.)
  *
  * <p><b>Compatibility note:</b> Throughout this API, multibyte values are always interpreted in
  * <i>little-endian</i> order. That is, hashing the byte array {@code {0x01, 0x02, 0x03, 0x04}} is
  * equivalent to hashing the {@code int} value {@code 0x04030201}. If this isn't what you need,
- * methods such as {@link Integer#reverseBytes} and {@link Ints#toByteArray} will help.
+ * methods such as {@code Integer#reverseBytes} and {@code Ints#toByteArray} will help.
  *
- * <h3>Relationship to {@link Object#hashCode}</h3>
+ * <h3>Relationship to {@code Object#hashCode}</h3>
  *
  * <p>Java's baked-in concept of hash codes is constrained to 32 bits, and provides no separation
  * between hash algorithms and the data they act on, so alternate hash algorithms can't be easily
@@ -133,7 +133,7 @@ public interface HashFunction {
   Hasher newHasher();
 
   /**
-   * Begins a new hash code computation as {@link #newHasher()}, but provides a hint of the expected
+   * Begins a new hash code computation as {@code #newHasher()}, but provides a hint of the expected
    * size of the input (in bytes). This is only important for non-streaming hash functions (hash
    * functions that need to buffer their whole input before processing any of it).
    */
@@ -186,7 +186,7 @@ public interface HashFunction {
    *
    * <p><b>Warning:</b> This method will produce different output than most other languages do when
    * running the same hash function on the equivalent input. For cross-language compatibility, use
-   * {@link #hashString}, usually with a charset of UTF-8. For other use cases, use {@code
+   * {@code #hashString}, usually with a charset of UTF-8. For other use cases, use {@code
    * hashUnencodedChars}.
    *
    * @since 15.0 (since 11.0 as hashString(CharSequence)).
@@ -195,11 +195,11 @@ public interface HashFunction {
 
   /**
    * Shortcut for {@code newHasher().putString(input, charset).hash()}. Characters are encoded using
-   * the given {@link Charset}. The implementation <i>might</i> perform better than its longhand
+   * the given {@code Charset}. The implementation <i>might</i> perform better than its longhand
    * equivalent, but should not perform worse.
    *
    * <p><b>Warning:</b> This method, which reencodes the input before hashing it, is useful only for
-   * cross-language compatibility. For other use cases, prefer {@link #hashUnencodedChars}, which is
+   * cross-language compatibility. For other use cases, prefer {@code #hashUnencodedChars}, which is
    * faster, produces the same output across Java releases, and hashes every {@code char} in the
    * input, even if some are invalid.
    */

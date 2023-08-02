@@ -26,7 +26,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 /**
- * Abstract {@link Hasher} that handles converting primitives to bytes using a scratch {@code
+ * Abstract {@code Hasher} that handles converting primitives to bytes using a scratch {@code
  * ByteBuffer} and streams all bytes to a sink to compute the hash.
  *
  * @author Colin Decker

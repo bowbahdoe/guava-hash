@@ -27,7 +27,7 @@ import java.nio.ByteBuffer;
 import dev.mccue.jsr305.CheckForNull;
 
 /**
- * {@link HashFunction} implementation of SipHash-c-d.
+ * {@code HashFunction} implementation of SipHash-c-d.
  *
  * @author Kurt Alfred Kluever
  * @author Jean-Philippe Aumasson

@@ -28,7 +28,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
- * {@link HashFunction} adapter for {@link MessageDigest} instances.
+ * {@code HashFunction} adapter for {@code MessageDigest} instances.
  *
  * @author Kevin Bourrillion
  * @author Dimitris Andreou

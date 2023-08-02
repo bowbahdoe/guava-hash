@@ -23,7 +23,7 @@ import java.nio.charset.Charset;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Skeleton implementation of {@link HashFunction} in terms of {@link #newHasher()}.
+ * Skeleton implementation of {@code HashFunction} in terms of {@code #newHasher()}.
  *
  * <p>TODO(lowasser): make public
  */

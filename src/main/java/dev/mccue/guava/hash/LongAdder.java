@@ -19,17 +19,17 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * One or more variables that together maintain an initially zero {@code long} sum. When updates
- * (method {@link #add}) are contended across threads, the set of variables may grow dynamically to
- * reduce contention. Method {@link #sum} (or, equivalently, {@link #longValue}) returns the current
+ * (method {@code #add}) are contended across threads, the set of variables may grow dynamically to
+ * reduce contention. Method {@code #sum} (or, equivalently, {@code #longValue}) returns the current
  * total combined across the variables maintaining the sum.
  *
- * <p>This class is usually preferable to {@link AtomicLong} when multiple threads update a common
+ * <p>This class is usually preferable to {@code AtomicLong} when multiple threads update a common
  * sum that is used for purposes such as collecting statistics, not for fine-grained synchronization
  * control. Under low update contention, the two classes have similar characteristics. But under
  * high contention, expected throughput of this class is significantly higher, at the expense of
  * higher space consumption.
  *
- * <p>This class extends {@link Number}, but does <em>not</em> define methods such as {@code
+ * <p>This class extends {@code Number}, but does <em>not</em> define methods such as {@code
  * equals}, {@code hashCode} and {@code compareTo} because instances are expected to be mutated, and
  * so are not useful as collection keys.
  *
@@ -116,7 +116,7 @@ final class LongAdder extends Striped64 implements Serializable, LongAddable {
   }
 
   /**
-   * Equivalent in effect to {@link #sum} followed by {@link #reset}. This method may apply for
+   * Equivalent in effect to {@code #sum} followed by {@code #reset}. This method may apply for
    * example during quiescent points between multithreaded computations. If there are updates
    * concurrent with this method, the returned value is <em>not</em> guaranteed to be the final
    * value occurring before the reset.
@@ -141,9 +141,9 @@ final class LongAdder extends Striped64 implements Serializable, LongAddable {
   }
 
   /**
-   * Returns the String representation of the {@link #sum}.
+   * Returns the String representation of the {@code #sum}.
    *
-   * @return the String representation of the {@link #sum}
+   * @return the String representation of the {@code #sum}
    */
   @Override
   public String toString() {
@@ -151,7 +151,7 @@ final class LongAdder extends Striped64 implements Serializable, LongAddable {
   }
 
   /**
-   * Equivalent to {@link #sum}.
+   * Equivalent to {@code #sum}.
    *
    * @return the sum
    */
@@ -160,19 +160,19 @@ final class LongAdder extends Striped64 implements Serializable, LongAddable {
     return sum();
   }
 
-  /** Returns the {@link #sum} as an {@code int} after a narrowing primitive conversion. */
+  /** Returns the {@code #sum} as an {@code int} after a narrowing primitive conversion. */
   @Override
   public int intValue() {
     return (int) sum();
   }
 
-  /** Returns the {@link #sum} as a {@code float} after a widening primitive conversion. */
+  /** Returns the {@code #sum} as a {@code float} after a widening primitive conversion. */
   @Override
   public float floatValue() {
     return (float) sum();
   }
 
-  /** Returns the {@link #sum} as a {@code double} after a widening primitive conversion. */
+  /** Returns the {@code #sum} as a {@code double} after a widening primitive conversion. */
   @Override
   public double doubleValue() {
     return (double) sum();

@@ -18,7 +18,7 @@ import dev.mccue.guava.base.Supplier;
 import com.google.errorprone.annotations.Immutable;
 
 /**
- * Explicitly named subinterface of {@link Supplier} that can be marked {@literal @}{@link
+ * Explicitly named subinterface of {@code Supplier} that can be marked {@literal @}{@code
  * Immutable}.
  */
 // TODO(cpovirk): Should we just use ChecksumType directly instead of defining this type?

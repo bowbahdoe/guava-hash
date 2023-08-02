@@ -15,6 +15,11 @@
 package dev.mccue.guava.hash;
 
 import dev.mccue.guava.primitives.Longs;
+import java.lang.reflect.Field;
+import java.nio.ByteOrder;
+import java.security.AccessController;
+import java.security.PrivilegedActionException;
+import java.security.PrivilegedExceptionAction;;
 
 /**
  * Utility functions for loading and storing values from a byte array.
@@ -96,11 +101,6 @@ final class LittleEndianByteArray {
         | ((source[offset + 3] & 0xFF) << 24);
   }
 
-  /**
-   * Indicates that the loading of Unsafe was successful and the load and store operations will be
-   * very efficient. May be useful for calling code to fall back on an alternative implementation
-   * that is slower than Unsafe.get/store but faster than the pure-Java mask-and-shift.
-   */
   static boolean usingUnsafe() {
     return false;
   }
@@ -116,6 +116,8 @@ final class LittleEndianByteArray {
 
     void putLongLittleEndian(byte[] array, int offset, long value);
   }
+
+
 
   /** Fallback implementation for when Unsafe is not available in our current environment. */
   private enum JavaLittleEndianBytes implements LittleEndianBytes {
@@ -144,7 +146,9 @@ final class LittleEndianByteArray {
   }
 
   static {
-    byteArray = JavaLittleEndianBytes.INSTANCE;
+    LittleEndianBytes theGetter = JavaLittleEndianBytes.INSTANCE;
+
+    byteArray = theGetter;
   }
 
   /** Deter instantiation of this class. */

@@ -20,7 +20,6 @@ import static dev.mccue.guava.base.Throwables.throwIfUnchecked;
 import static java.lang.invoke.MethodType.methodType;
 
 import com.google.errorprone.annotations.Immutable;
-
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.security.Key;
@@ -36,7 +35,7 @@ import dev.mccue.jsr305.CheckForNull;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * Static methods to obtain {@link HashFunction} instances, and other static hashing-related
+ * Static methods to obtain {@code HashFunction} instances, and other static hashing-related
  * utilities.
  *
  * <p>A comparison of the various hash functions can be found <a
@@ -56,13 +55,13 @@ public final class Hashing {
    * <p><b>Warning:</b> a new random seed for these functions is chosen each time the {@code
    * Hashing} class is loaded. <b>Do not use this method</b> if hash codes may escape the current
    * process in any way, for example being sent over RPC, or saved to disk. For a general-purpose,
-   * non-cryptographic hash function that will never change behavior, we suggest {@link
+   * non-cryptographic hash function that will never change behavior, we suggest {@code
    * #murmur3_128}.
    *
    * <p>Repeated calls to this method on the same loaded {@code Hashing} class, using the same value
-   * for {@code minimumBits}, will return identically-behaving {@link HashFunction} instances.
+   * for {@code minimumBits}, will return identically-behaving {@code HashFunction} instances.
    *
-   * @param minimumBits a positive integer. This can be arbitrarily large. The returned {@link
+   * @param minimumBits a positive integer. This can be arbitrarily large. The returned {@code
    *     HashFunction} instance may use memory proportional to this integer.
    * @return a hash function, described above, that produces hash codes of length {@code
    *     minimumBits} or greater
@@ -90,7 +89,7 @@ public final class Hashing {
   }
 
   /**
-   * Used to randomize {@link #goodFastHash} instances, so that programs which persist anything
+   * Used to randomize {@code #goodFastHash} instances, so that programs which persist anything
    * dependent on the hash codes they produce will fail sooner.
    */
   @SuppressWarnings("GoodTime") // reading system time without TimeSource
@@ -105,8 +104,8 @@ public final class Hashing {
    * <p>The C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A), which however does not
    * have the bug.
    *
-   * @deprecated This implementation produces incorrect hash values from the {@link
-   *     HashFunction#hashString} method if the string contains non-BMP characters. Use {@link
+   * @deprecated This implementation produces incorrect hash values from the {@code
+   *     HashFunction#hashString} method if the string contains non-BMP characters. Use {@code
    *     #murmur3_32_fixed(int)} instead.
    */
   @Deprecated
@@ -123,8 +122,8 @@ public final class Hashing {
    * <p>The C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A), which however does not
    * have the bug.
    *
-   * @deprecated This implementation produces incorrect hash values from the {@link
-   *     HashFunction#hashString} method if the string contains non-BMP characters. Use {@link
+   * @deprecated This implementation produces incorrect hash values from the {@code
+   *     HashFunction#hashString} method if the string contains non-BMP characters. Use {@code
    *     #murmur3_32_fixed()} instead.
    */
   @Deprecated
@@ -214,8 +213,8 @@ public final class Hashing {
    *     neither fast nor secure. As of January 2017, we suggest:
    *     <ul>
    *       <li>For security:
-   *           {@link Hashing#sha256} or a higher-level API.
-   *       <li>For speed: {@link Hashing#goodFastHash}, though see its docs for caveats.
+   *           {@code Hashing#sha256} or a higher-level API.
+   *       <li>For speed: {@code Hashing#goodFastHash}, though see its docs for caveats.
    *     </ul>
    */
   @Deprecated
@@ -235,8 +234,8 @@ public final class Hashing {
    *     neither fast nor secure. As of January 2017, we suggest:
    *     <ul>
    *       <li>For security:
-   *           {@link Hashing#sha256} or a higher-level API.
-   *       <li>For speed: {@link Hashing#goodFastHash}, though see its docs for caveats.
+   *           {@code Hashing#sha256} or a higher-level API.
+   *       <li>For speed: {@code Hashing#goodFastHash}, though see its docs for caveats.
    *     </ul>
    */
   @Deprecated
@@ -296,7 +295,7 @@ public final class Hashing {
 
   /**
    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the
-   * MD5 (128 hash bits) hash function and a {@link SecretKeySpec} created from the given byte array
+   * MD5 (128 hash bits) hash function and a {@code SecretKeySpec} created from the given byte array
    * and the MD5 algorithm.
    *
    * @param key the key material of the secret key
@@ -320,7 +319,7 @@ public final class Hashing {
 
   /**
    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the
-   * SHA-1 (160 hash bits) hash function and a {@link SecretKeySpec} created from the given byte
+   * SHA-1 (160 hash bits) hash function and a {@code SecretKeySpec} created from the given byte
    * array and the SHA-1 algorithm.
    *
    * @param key the key material of the secret key
@@ -344,7 +343,7 @@ public final class Hashing {
 
   /**
    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the
-   * SHA-256 (256 hash bits) hash function and a {@link SecretKeySpec} created from the given byte
+   * SHA-256 (256 hash bits) hash function and a {@code SecretKeySpec} created from the given byte
    * array and the SHA-256 algorithm.
    *
    * @param key the key material of the secret key
@@ -368,7 +367,7 @@ public final class Hashing {
 
   /**
    * Returns a hash function implementing the Message Authentication Code (MAC) algorithm, using the
-   * SHA-512 (512 hash bits) hash function and a {@link SecretKeySpec} created from the given byte
+   * SHA-512 (512 hash bits) hash function and a {@code SecretKeySpec} created from the given byte
    * array and the SHA-512 algorithm.
    *
    * @param key the key material of the secret key
@@ -442,8 +441,8 @@ public final class Hashing {
   /**
    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits).
    *
-   * <p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a {@code
-   * HashCode} produced by this function, use {@link HashCode#padToLong()}.
+   * <p>To get the {@code long} value equivalent to {@code Checksum#getValue()} for a {@code
+   * HashCode} produced by this function, use {@code HashCode#padToLong()}.
    *
    * <p>This function is best understood as a <a
    * href="https://en.wikipedia.org/wiki/Checksum">checksum</a> rather than a true <a
@@ -458,8 +457,8 @@ public final class Hashing {
   /**
    * Returns a hash function implementing the Adler-32 checksum algorithm (32 hash bits).
    *
-   * <p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a {@code
-   * HashCode} produced by this function, use {@link HashCode#padToLong()}.
+   * <p>To get the {@code long} value equivalent to {@code Checksum#getValue()} for a {@code
+   * HashCode} produced by this function, use {@code HashCode#padToLong()}.
    *
    * <p>This function is best understood as a <a
    * href="https://en.wikipedia.org/wiki/Checksum">checksum</a> rather than a true <a
@@ -551,9 +550,9 @@ public final class Hashing {
    * cryptographically secure, but it produces a high-quality hash with fewer collisions than some
    * alternatives we've used in the past.
    *
-   * <p>FarmHash fingerprints are encoded by {@link HashCode#asBytes} in little-endian order. This
-   * means {@link HashCode#asLong} is guaranteed to return the same value that
-   * farmhash::Fingerprint64() would for the same input (when compared using {@link
+   * <p>FarmHash fingerprints are encoded by {@code HashCode#asBytes} in little-endian order. This
+   * means {@code HashCode#asLong} is guaranteed to return the same value that
+   * farmhash::Fingerprint64() would for the same input (when compared using {@code
    * dev.mccue.guava.primitives.UnsignedLongs}'s encoding of 64-bit unsigned numbers).
    *
    * <p>This function is best understood as a <a
@@ -572,7 +571,7 @@ public final class Hashing {
    * <p>This is designed for generating persistent fingerprints of strings. It isn't
    * cryptographically secure, but it produces a high-quality hash with few collisions. Fingerprints
    * generated using this are byte-wise identical to those created using the C++ version, but note
-   * that this uses unsigned integers (see {@link dev.mccue.guava.primitives.UnsignedInts}).
+   * that this uses unsigned integers (see {@code dev.mccue.guava.primitives.UnsignedInts}).
    * Comparisons between the two should take this into account.
    *
    * <p>Fingerprint2011() is a form of Murmur2 on strings up to 32 bytes and a form of CityHash for
@@ -731,7 +730,7 @@ public final class Hashing {
    * underlying hash functions together. This can be useful if you need to generate hash codes of a
    * specific length.
    *
-   * <p>For example, if you need 1024-bit hash codes, you could join two {@link Hashing#sha512} hash
+   * <p>For example, if you need 1024-bit hash codes, you could join two {@code Hashing#sha512} hash
    * functions together: {@code Hashing.concatenating(Hashing.sha512(), Hashing.sha512())}.
    *
    * @since 19.0
@@ -751,7 +750,7 @@ public final class Hashing {
    * underlying hash functions together. This can be useful if you need to generate hash codes of a
    * specific length.
    *
-   * <p>For example, if you need 1024-bit hash codes, you could join two {@link Hashing#sha512} hash
+   * <p>For example, if you need 1024-bit hash codes, you could join two {@code Hashing#sha512} hash
    * functions together: {@code Hashing.concatenating(Hashing.sha512(), Hashing.sha512())}.
    *
    * @since 19.0

@@ -20,7 +20,6 @@ import static dev.mccue.guava.hash.LittleEndianByteArray.load64;
 import static java.lang.Long.rotateRight;
 
 
-
 /**
  * Implementation of FarmHash Fingerprint64, an open-source fingerprinting algorithm for strings.
  *
@@ -65,7 +64,6 @@ final class FarmHashFingerprint64 extends AbstractNonStreamingHashFunction {
 
   // End of public functions.
 
-  @VisibleForTesting
   static long fingerprint(byte[] bytes, int offset, int length) {
     if (length <= 32) {
       if (length <= 16) {

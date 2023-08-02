@@ -14,16 +14,15 @@
 
 package dev.mccue.guava.hash;
 
-
 import com.google.errorprone.annotations.DoNotMock;
 import java.io.Serializable;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
  * An object which can send data from an object of type {@code T} into a {@code PrimitiveSink}.
- * Implementations for common types can be found in {@link Funnels}.
+ * Implementations for common types can be found in {@code Funnels}.
  *
- * <p>Note that serialization of {@linkplain BloomFilter bloom filters} requires the proper
+ * <p>Note that serialization of {@code BloomFilter bloom filters} requires the proper
  * serialization of funnels. When possible, it is recommended that funnels be implemented as a
  * single-element enum to maintain serialization guarantees. See Effective Java (2nd Edition), Item
  * 3: "Enforce the singleton property with a private constructor or an enum type". For example:
@@ -42,7 +41,6 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @author Dimitris Andreou
  * @since 11.0
  */
-@Beta
 @DoNotMock("Implement with a lambda")
 @ElementTypesAreNonnullByDefault
 public interface Funnel<T extends @Nullable Object> extends Serializable {

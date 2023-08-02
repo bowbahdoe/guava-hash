@@ -8,9 +8,8 @@ import static dev.mccue.guava.hash.LittleEndianByteArray.load64Safely;
 import static java.lang.Long.rotateRight;
 
 
-
 /**
- * Implementation of Geoff Pike's fingerprint2011 hash function. See {@link Hashing#fingerprint2011}
+ * Implementation of Geoff Pike's fingerprint2011 hash function. See {@code Hashing#fingerprint2011}
  * for information on the behaviour of the algorithm.
  *
  * <p>On Intel Core2 2.66, on 1000 bytes, fingerprint2011 takes 0.9 microseconds compared to
@@ -56,7 +55,6 @@ final class Fingerprint2011 extends AbstractNonStreamingHashFunction {
 
   // End of public functions.
 
-  @VisibleForTesting
   static long fingerprint(byte[] bytes, int offset, int length) {
     long result;
 
@@ -79,7 +77,6 @@ final class Fingerprint2011 extends AbstractNonStreamingHashFunction {
   }
 
   /** Implementation of Hash128to64 from util/hash/hash128to64.h */
-  @VisibleForTesting
   static long hash128to64(long high, long low) {
     long a = (low ^ high) * K3;
     a ^= (a >>> 47);
@@ -169,7 +166,6 @@ final class Fingerprint2011 extends AbstractNonStreamingHashFunction {
     return shiftMix(r * K0 + vs) * K2;
   }
 
-  @VisibleForTesting
   static long murmurHash64WithSeed(byte[] bytes, int offset, int length, long seed) {
     long mul = K3;
     int topBit = 0x7;

@@ -21,7 +21,7 @@ import java.nio.charset.Charset;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * An abstract implementation of {@link Hasher}, which only requires subtypes to implement {@link
+ * An abstract implementation of {@code Hasher}, which only requires subtypes to implement {@code
  * #putByte}. Subtypes may provide more efficient implementations, however.
  *
  * @author Dimitris Andreou

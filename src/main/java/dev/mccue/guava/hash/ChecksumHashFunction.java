@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.zip.Checksum;
 
 /**
- * {@link HashFunction} adapter for {@link Checksum} instances.
+ * {@code HashFunction} adapter for {@code Checksum} instances.
  *
  * @author Colin Decker
  */

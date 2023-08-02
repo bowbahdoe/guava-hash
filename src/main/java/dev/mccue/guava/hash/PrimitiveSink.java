@@ -14,7 +14,6 @@
 
 package dev.mccue.guava.hash;
 
-
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -25,7 +24,6 @@ import java.nio.charset.Charset;
  * @author Kevin Bourrillion
  * @since 12.0 (in 11.0 as {@code Sink})
  */
-@Beta
 @ElementTypesAreNonnullByDefault
 public interface PrimitiveSink {
   /**
@@ -101,10 +99,10 @@ public interface PrimitiveSink {
   PrimitiveSink putChar(char c);
 
   /**
-   * Puts each 16-bit code unit from the {@link CharSequence} into this sink.
+   * Puts each 16-bit code unit from the {@code CharSequence} into this sink.
    *
    * <p><b>Warning:</b> This method will produce different output than most other languages do when
-   * running on the equivalent input. For cross-language compatibility, use {@link #putString},
+   * running on the equivalent input. For cross-language compatibility, use {@code #putString},
    * usually with a charset of UTF-8. For other use cases, use {@code putUnencodedChars}.
    *
    * @since 15.0 (since 11.0 as putString(CharSequence))
@@ -116,7 +114,7 @@ public interface PrimitiveSink {
    * Puts a string into this sink using the given charset.
    *
    * <p><b>Warning:</b> This method, which reencodes the input before processing it, is useful only
-   * for cross-language compatibility. For other use cases, prefer {@link #putUnencodedChars}, which
+   * for cross-language compatibility. For other use cases, prefer {@code #putUnencodedChars}, which
    * is faster, produces the same output across Java releases, and processes every {@code char} in
    * the input, even if some are invalid.
    */

@@ -14,7 +14,6 @@
 
 package dev.mccue.guava.hash;
 
-
 import dev.mccue.guava.base.Preconditions;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
@@ -30,7 +29,6 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @author Dimitris Andreou
  * @since 11.0
  */
-@Beta
 @ElementTypesAreNonnullByDefault
 public final class Funnels {
   private Funnels() {}
@@ -56,7 +54,7 @@ public final class Funnels {
 
   /**
    * Returns a funnel that extracts the characters from a {@code CharSequence}, a character at a
-   * time, without performing any encoding. If you need to use a specific encoding, use {@link
+   * time, without performing any encoding. If you need to use a specific encoding, use {@code
    * Funnels#stringFunnel(Charset)} instead.
    *
    * @since 15.0 (since 11.0 as {@code Funnels.stringFunnel()}.
@@ -236,7 +234,7 @@ public final class Funnels {
   }
 
   /**
-   * Wraps a {@code PrimitiveSink} as an {@link OutputStream}, so it is easy to {@link Funnel#funnel
+   * Wraps a {@code PrimitiveSink} as an {@code OutputStream}, so it is easy to {@code Funnel#funnel
    * funnel} an object to a {@code PrimitiveSink} if there is already a way to write the contents of
    * the object to an {@code OutputStream}.
    *

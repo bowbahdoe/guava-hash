@@ -93,7 +93,7 @@ enum BloomFilterStrategies implements BloomFilter.Strategy {
     }
   },
   /**
-   * This strategy uses all 128 bits of {@link Hashing#murmur3_128} when hashing. It looks different
+   * This strategy uses all 128 bits of {@code Hashing#murmur3_128} when hashing. It looks different
    * from the implementation in MURMUR128_MITZ_32 because we're avoiding the multiplication in the
    * loop and doing a (much simpler) += hash2. We're also changing the index to a positive number by
    * AND'ing with Long.MAX_VALUE instead of flipping the bits.
@@ -268,7 +268,7 @@ enum BloomFilterStrategies implements BloomFilter.Strategy {
     }
 
     /**
-     * ORs the bits encoded in the {@code i}th {@code long} in the underlying {@link
+     * ORs the bits encoded in the {@code i}th {@code long} in the underlying {@code
      * AtomicLongArray} with the given value.
      */
     void putData(int i, long longValue) {
@@ -290,7 +290,7 @@ enum BloomFilterStrategies implements BloomFilter.Strategy {
       }
     }
 
-    /** Returns the number of {@code long}s in the underlying {@link AtomicLongArray}. */
+    /** Returns the number of {@code long}s in the underlying {@code AtomicLongArray}. */
     int dataLength() {
       return data.length();
     }

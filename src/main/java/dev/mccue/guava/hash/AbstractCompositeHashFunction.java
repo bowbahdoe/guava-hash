@@ -23,9 +23,9 @@ import java.nio.charset.Charset;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * An abstract composition of multiple hash functions. {@linkplain #newHasher()} delegates to the
+ * An abstract composition of multiple hash functions. {@code #newHasher()} delegates to the
  * {@code Hasher} objects of the delegate hash functions, and in the end, they are used by
- * {@linkplain #makeHash(Hasher[])} that constructs the final {@code HashCode}.
+ * {@code #makeHash(Hasher[])} that constructs the final {@code HashCode}.
  *
  * @author Dimitris Andreou
  */

@@ -43,7 +43,7 @@ abstract class AbstractStreamingHasher extends AbstractHasher {
    * Constructor for use by subclasses. This hasher instance will process chunks of the specified
    * size.
    *
-   * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;
+   * @param chunkSize the number of bytes available per {@code #process(ByteBuffer)} invocation;
    *     must be at least 4
    */
   protected AbstractStreamingHasher(int chunkSize) {
@@ -55,7 +55,7 @@ abstract class AbstractStreamingHasher extends AbstractHasher {
    * size, using an internal buffer of {@code bufferSize} size, which must be a multiple of {@code
    * chunkSize}.
    *
-   * @param chunkSize the number of bytes available per {@link #process(ByteBuffer)} invocation;
+   * @param chunkSize the number of bytes available per {@code #process(ByteBuffer)} invocation;
    *     must be at least 4
    * @param bufferSize the size of the internal buffer. Must be a multiple of chunkSize
    */
@@ -77,7 +77,7 @@ abstract class AbstractStreamingHasher extends AbstractHasher {
    * This is invoked for the last bytes of the input, which are not enough to fill a whole chunk.
    * The passed {@code ByteBuffer} is guaranteed to be non-empty.
    *
-   * <p>This implementation simply pads with zeros and delegates to {@link #process(ByteBuffer)}.
+   * <p>This implementation simply pads with zeros and delegates to {@code #process(ByteBuffer)}.
    */
   protected void processRemaining(ByteBuffer bb) {
     Java8Compatibility.position(bb, bb.limit()); // move at the end
@@ -197,8 +197,8 @@ abstract class AbstractStreamingHasher extends AbstractHasher {
 
   /**
    * Computes a hash code based on the data that have been provided to this hasher. This is called
-   * after all chunks are handled with {@link #process} and any leftover bytes that did not make a
-   * complete chunk are handled with {@link #processRemaining}.
+   * after all chunks are handled with {@code #process} and any leftover bytes that did not make a
+   * complete chunk are handled with {@code #processRemaining}.
    */
   protected abstract HashCode makeHash();
 

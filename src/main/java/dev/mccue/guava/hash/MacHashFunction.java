@@ -25,7 +25,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 
 /**
- * {@link HashFunction} adapter for {@link Mac} instances.
+ * {@code HashFunction} adapter for {@code Mac} instances.
  *
  * @author Kurt Alfred Kluever
  */
@@ -94,7 +94,7 @@ final class MacHashFunction extends AbstractHashFunction {
     return toString;
   }
 
-  /** Hasher that updates a {@link Mac} (message authentication code). */
+  /** Hasher that updates a {@code Mac} (message authentication code). */
   private static final class MacHasher extends AbstractByteHasher {
     private final Mac mac;
     private boolean done;
