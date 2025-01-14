@@ -23,7 +23,7 @@ import java.io.OutputStream;
 /**
  * An {@code OutputStream} that maintains a hash of the data written to it.
  *
- * @author Nick Piepmeier
+ * @author Zoe Piepmeier
  * @since 16.0
  */
 @ElementTypesAreNonnullByDefault

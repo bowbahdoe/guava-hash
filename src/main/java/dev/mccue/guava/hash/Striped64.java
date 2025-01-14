@@ -11,6 +11,10 @@
 
 package dev.mccue.guava.hash;
 
+import java.lang.reflect.Field;
+import java.security.AccessController;
+import java.security.PrivilegedActionException;
+import java.security.PrivilegedExceptionAction;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 import java.util.Random;
@@ -23,6 +27,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * so.
  */
 @ElementTypesAreNonnullByDefault
+@SuppressWarnings({"SunApi", "removal"}) // b/345822163
 abstract class Striped64 extends Number {
   /*
    * This class maintains a lazily-initialized table of atomically
@@ -87,13 +92,6 @@ abstract class Striped64 extends Number {
    * needed again; and for short-lived ones, it does not matter.
    */
 
-  /**
-   * Padded variant of AtomicLong supporting only raw accesses plus CAS. The value field is placed
-   * between pads, hoping that the JVM doesn't reorder them.
-   *
-   * <p>JVM intrinsics note: It would be possible to use a release-only form of CAS here, if it were
-   * provided.
-   */
   static final class Cell {
     volatile long p0, p1, p2, p3, p4, p5, p6;
     volatile long value;

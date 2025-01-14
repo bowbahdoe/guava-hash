@@ -22,6 +22,7 @@ import static java.lang.invoke.MethodType.methodType;
 import com.google.errorprone.annotations.Immutable;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +40,7 @@ import javax.crypto.spec.SecretKeySpec;
  * utilities.
  *
  * <p>A comparison of the various hash functions can be found <a
- * href="http://goo.gl/jS7HH">here</a>.
+ * href="https://docs.google.com/spreadsheets/d/1_q2EVcxA2HjcrlVMbaqXwMj31h9M5-Bqj_m8vITOwwk/">here</a>.
  *
  * @author Kevin Bourrillion
  * @author Dimitris Andreou
@@ -516,8 +517,8 @@ public final class Hashing {
         return (Checksum) CONSTRUCTOR.invokeExact();
       } catch (Throwable e) {
         throwIfUnchecked(e);
-        // That constructor has no `throws` clause.
-        throw newLinkageError(e);
+        // This should be impossible, since the constructor has no `throws` clause.
+        throw new UndeclaredThrowableException(e);
       }
     }
 

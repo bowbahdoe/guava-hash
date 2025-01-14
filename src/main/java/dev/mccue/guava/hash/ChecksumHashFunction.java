@@ -16,12 +16,14 @@ package dev.mccue.guava.hash;
 
 import static dev.mccue.guava.base.Preconditions.checkArgument;
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
+import static dev.mccue.guava.base.Throwables.throwIfUnchecked;
 
 import com.google.errorprone.annotations.Immutable;
 import java.io.Serializable;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.nio.ByteBuffer;
 import java.util.zip.Checksum;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -111,10 +113,10 @@ final class ChecksumHashFunction extends AbstractHashFunction implements Seriali
       if (UPDATE_BB != null) {
         try {
           UPDATE_BB.invokeExact(cs, bb);
-        } catch (Error t) {
-          throw t;
-        } catch (Throwable t) {
-          throw new AssertionError(t);
+        } catch (Throwable e) {
+          throwIfUnchecked(e);
+          // This should be impossible, since `update` has no `throws` clause.
+          throw new UndeclaredThrowableException(e);
         }
         return true;
       } else {

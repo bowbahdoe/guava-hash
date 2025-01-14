@@ -17,9 +17,9 @@ package dev.mccue.guava.hash;
 import static dev.mccue.guava.base.Preconditions.checkArgument;
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
 import static dev.mccue.guava.base.Preconditions.checkState;
+import static java.lang.Math.min;
 
 import dev.mccue.guava.base.Preconditions;
-import dev.mccue.guava.primitives.Ints;
 import dev.mccue.guava.primitives.UnsignedInts;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.Serializable;
@@ -83,7 +83,7 @@ public abstract class HashCode {
    */
   @CanIgnoreReturnValue
   public int writeBytesTo(byte[] dest, int offset, int maxLength) {
-    maxLength = Ints.min(maxLength, bits() / 8);
+    maxLength = min(maxLength, bits() / 8);
     Preconditions.checkPositionIndexes(offset, offset + maxLength, dest.length);
     writeBytesToImpl(dest, offset, maxLength);
     return maxLength;
@@ -289,7 +289,7 @@ public abstract class HashCode {
     @Override
     public long padToLong() {
       long retVal = (bytes[0] & 0xFF);
-      for (int i = 1; i < Math.min(bytes.length, 8); i++) {
+      for (int i = 1; i < min(bytes.length, 8); i++) {
         retVal |= (bytes[i] & 0xFFL) << (i * 8);
       }
       return retVal;
